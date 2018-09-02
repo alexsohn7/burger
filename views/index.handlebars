@@ -1,0 +1,47 @@
+<h1> Eat-Da-Burger </h1>
+
+<ul>
+    {{#each burgers}}
+    <li>
+        <p> Id: {{this.id}}</p>
+        <p> Burger: {{this.burger_name}} </p>
+
+    </li>
+    {{/each}}
+</ul>
+
+<form class="create-form">
+
+    <div class="form-group">
+        <label for="burgerForm"> Enter a burger you want to eat and click submit!</label>
+        <textarea class="form-control" id="burgerForm" rows="3"></textarea>
+    </div>
+
+    <button type="submit" name="submit" value="submit" id="submit">Add Burger</button>
+</form>
+
+<script>
+    $("#submit").on("click", function () {
+        event.preventDefault();
+
+        console.log($("#burgerForm").val().trim());
+
+        var newBurger = {
+            burger_name: $("#burgerForm").val().trim(),
+            devoured: 0
+        };
+
+        // Send POST request to burgers_controller.js
+        $.ajax("/api/burgers", {
+            type: "POST",
+            data: newBurger
+        }).then(
+            function () {
+                console.log("Added Burger");
+
+                location.reload();
+            }
+        )
+    })
+
+</script>

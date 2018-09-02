@@ -1,0 +1,13 @@
+DROP DATABASE IF EXISTS burgers_db;
+
+CREATE DATABASE burgers_db;
+USE burgers_db;
+-- USE heroku_30aa0966782038e;
+
+CREATE TABLE burgers
+(
+	id int NOT NULL AUTO_INCREMENT,
+	burger_name VARCHAR(100) NOT NULL,
+	devoured BOOLEAN DEFAULT 0 NOT NULL,
+	PRIMARY KEY (id)
+);
